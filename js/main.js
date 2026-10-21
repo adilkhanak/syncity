@@ -409,7 +409,7 @@
 
     // заголовок поднимается строками
     G.from('.hero .line > span', { yPercent: 110, duration: 1.15, ease: 'power4.out', stagger: 0.09, delay: 0.15 });
-    G.from(['.hero .eyebrow', '.hero .lead', '.hero__ctas', '.hero__note'], { y: 22, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.08, delay: 0.55 });
+    G.from(['.hero .eyebrow', '.hero .lead', '.hero__ctas'], { y: 22, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.08, delay: 0.55 });
   }
 
   // лента вопросов: дублируем содержимое для бесконечной прокрутки
@@ -548,11 +548,11 @@
   ];
   const CITY_QS = [
     { q: 'Реклама кофейни только на русском — зайдёт?', v: [72, 64, 41, 70, 18, 22], red: 4,
-      insight: 'Туркестан и село против. С казахской версией реклама сработает по всей стране.' },
+      insight: 'Туркестан и село против. Нужна казахская версия.' },
     { q: 'Доставка за 1 490 ₸ — нормальная цена?', v: [68, 61, 34, 47, 29, 12], red: 2,
-      insight: 'В Шымкенте цена кажется высокой. Это большой рынок — стоит проверить 990 ₸.' },
+      insight: 'В Шымкенте цена кажется высокой. Проверьте 990 ₸.' },
     { q: 'Слоган «Жаңа дәм — жаңа күн» понятен?', v: [58, 66, 81, 44, 87, 79], red: 3,
-      insight: 'В Караганде слоган понимают хуже всего. Нужна версия на двух языках.' },
+      insight: 'В Караганде слоган понимают хуже. Нужны два языка.' },
   ];
   const citySvg = $('#city-svg');
   const cityQs = $('#city-qs');
@@ -696,7 +696,7 @@
         truthCap.textContent = `совпало ${matched} из ${i + 1} окон`;
         if (i === 19) setTimeout(() => {
           tWins.mark.classList.add('is-on');
-          truthCap.textContent = 'совпало 15 из 20 окон · одно расхождение обведено';
+          truthCap.textContent = 'совпало 15 из 20 окон';
         }, 400);
       }, i * 120);
     });
@@ -788,14 +788,6 @@
 
   const form = $('#form');
   const msg = $('#form-msg');
-  const qInput = $('#f-question');
-  const PLACEHOLDERS = $$('.ticker__item', ticker).slice(0, 8).map(n => n.textContent);
-  let ph = 0;
-  setInterval(() => {
-    if (document.activeElement === qInput || qInput.value) return;
-    ph = (ph + 1) % PLACEHOLDERS.length;
-    qInput.placeholder = PLACEHOLDERS[ph];
-  }, 3200);
   form.addEventListener('submit', e => {
     e.preventDefault();
     const email = $('#f-email').value.trim();
